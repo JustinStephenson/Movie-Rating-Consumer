@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: Movie-Rating-Consumer
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: myGroup
+
+server:
+  port: 8081
