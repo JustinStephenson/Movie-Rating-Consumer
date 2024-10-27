@@ -16,27 +16,29 @@ public class MovieRatingService {
     private final MovieRatingRepository movieRatingRepository;
 
     public void addMovieRating(MovieRatingEntity movieRatingEntity) {
+        Integer userId = movieRatingEntity.getUserId();
         String movieName = movieRatingEntity.getMovieName();
-        log.info("Attempting to add a movie rating for {}", movieName);
-        Optional<MovieRatingEntity> movie = movieRatingRepository.findByUserIdAndMovieName(movieRatingEntity.getUserId(), movieName);
+        log.info("Attempting to add a movie rating for {} for user {}", movieName, userId);
+        Optional<MovieRatingEntity> movie = movieRatingRepository.findByUserIdAndMovieName(userId, movieName);
         if (movie.isPresent()) {
-            log.info("Movie rating already exists for {}", movieName);
+            log.info("Movie rating already exists for {} for user {}", movieName, userId);
         } else {
             movieRatingRepository.save(movieRatingEntity);
-            log.info("Movie rating for {} has been added", movieName);
+            log.info("Movie rating for {} has been added for user {}", movieName, userId);
         }
     }
 
     public void updateMovieRating(MovieRatingEntity movieRatingEntity) {
+        Integer userId = movieRatingEntity.getUserId();
         String movieName = movieRatingEntity.getMovieName();
-        log.info("Attempting to update a movie rating for {}", movieName);
-        Optional<MovieRatingEntity> movie = movieRatingRepository.findByUserIdAndMovieName(movieRatingEntity.getUserId(), movieName);
+        log.info("Attempting to update a movie rating for {} for user {}", movieName, userId);
+        Optional<MovieRatingEntity> movie = movieRatingRepository.findByUserIdAndMovieName(userId, movieName);
         if (movie.isPresent()) {
             movieRatingEntity.setId(movie.get().getId());
             movieRatingRepository.save(movieRatingEntity);
-            log.info("Movie rating for {} has been updated", movieName);
+            log.info("Movie rating for {} has been updated for user {}", movieName, userId);
         } else {
-            log.info("Movie rating for {} does not exists", movieName);
+            log.info("Movie rating for {} does not exists for user {}", movieName, userId);
         }
     }
 }
