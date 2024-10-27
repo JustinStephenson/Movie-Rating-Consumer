@@ -5,6 +5,13 @@ spring:
     bootstrap-servers: localhost:9092
     consumer:
       group-id: myGroup
+  datasource:
+    url: jdbc:postgresql://localhost:5432/movies
+    username: postgres
+    password: postgres
+  jpa:
+    hibernate:
+      ddl-auto: update
 
 server:
   port: 8081
