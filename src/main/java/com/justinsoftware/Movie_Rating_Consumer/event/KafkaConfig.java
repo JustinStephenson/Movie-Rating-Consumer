@@ -1,9 +1,10 @@
 package com.justinsoftware.Movie_Rating_Consumer.event;
 
-import org.springframework.context.annotation.Configuration;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
-@Configuration
-public class KafkaConfig {
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+public final class KafkaConfig {
 
     public static final String CREATE_MOVIE_TOPIC = "movieRatingProducer-json-createMovieRating";
     public static final String UPDATE_MOVIE_TOPIC = "movieRatingProducer-json-updateMovieRating";
