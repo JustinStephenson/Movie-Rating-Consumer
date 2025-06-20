@@ -18,8 +18,6 @@ public final class TestUtils {
 
     private static final ObjectMapper objectMapper = new ObjectMapper();
 
-    public static final String KAFKA_CREATE_TOPIC = "movieRatingProducer-json-createMovieRating";
-
     public static String stringifyJson(Object jsonObject) {
         try {
             return objectMapper.writeValueAsString(jsonObject);
