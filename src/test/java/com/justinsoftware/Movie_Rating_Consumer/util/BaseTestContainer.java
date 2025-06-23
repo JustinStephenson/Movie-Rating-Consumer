@@ -77,6 +77,13 @@ public class BaseTestContainer {
         logOutput = output;
     }
 
+    /**
+     * Executes a SQL script to update the state of the PostgreSQL database.
+     * This method uses the provided SQL file path and applies the script to the
+     * configured PostgreSQL database associated with the test container.
+     *
+     * @param sql The path to the SQL file containing the script to be executed
+     */
     protected static void updatePostgresDatabase(String sql) {
         ScriptUtils.runInitScript(containerDelegate, sql);
     }
