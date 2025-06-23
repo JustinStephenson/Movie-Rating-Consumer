@@ -42,6 +42,7 @@ public class BaseTestContainer {
     private static final String POSTGRES_USERNAME = "postgres";
     private static final String POSTGRES_PASSWORD = "postgres";
 
+    public static JdbcDatabaseDelegate containerDelegate;
     private static CapturedOutput logOutput;
 
     private static final ConfluentKafkaContainer kafka = new ConfluentKafkaContainer(DockerImageName.parse(KAFKA_CONTAINER));
@@ -67,7 +68,7 @@ public class BaseTestContainer {
     static {
         Startables.deepStart(kafka, postgres).join();
 
-        var containerDelegate = new JdbcDatabaseDelegate(postgres, "");
+        containerDelegate = new JdbcDatabaseDelegate(postgres, "");
         ScriptUtils.runInitScript(containerDelegate, "init/postgresqlInit.sql");
     }
 
