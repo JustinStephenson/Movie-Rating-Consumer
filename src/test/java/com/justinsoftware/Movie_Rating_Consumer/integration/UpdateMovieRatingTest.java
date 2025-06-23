@@ -10,7 +10,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.testcontainers.ext.ScriptUtils;
 
 import java.util.Optional;
 import java.util.stream.Stream;
@@ -25,7 +24,7 @@ public class UpdateMovieRatingTest extends BaseTestContainer {
 
     @BeforeAll
     static void beforeAll() {
-        ScriptUtils.runInitScript(BaseTestContainer.containerDelegate, "setup/add/postgresqlAddMovie.sql");
+        updatePostgresDatabase("setup/add/postgresqlAddMovie.sql");
     }
 
     @ParameterizedTest

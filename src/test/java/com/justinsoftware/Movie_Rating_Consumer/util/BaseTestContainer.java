@@ -77,6 +77,10 @@ public class BaseTestContainer {
         logOutput = output;
     }
 
+    protected static void updatePostgresDatabase(String sql) {
+        ScriptUtils.runInitScript(containerDelegate, sql);
+    }
+
     /**
      * Creates a specified message to a specified topic using Kafka broker
      *
